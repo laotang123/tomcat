@@ -65,6 +65,7 @@ import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.core.StandardHost;
 import org.apache.catalina.util.ContextName;
 import org.apache.catalina.util.Introspection;
+import org.apache.jasper.servlet.JasperInitializer;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.apache.tomcat.Jar;
@@ -777,6 +778,8 @@ public class ContextConfig implements LifecycleListener {
         }
 
         webConfig();
+        //500报错 因为我们直接启动org.apache.catalina.startup.Bootstrap的时候没有加载org.apache.jasper.servlet.JasperInitializer，从而无法编译JSP
+        context.addServletContainerInitializer(new JasperInitializer(),null);
 
         if (!context.getIgnoreAnnotations()) {
             applicationAnnotationsConfig();
