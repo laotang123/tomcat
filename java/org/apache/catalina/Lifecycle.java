@@ -147,7 +147,8 @@ public interface Lifecycle {
 
 
     /**
-     * The LifecycleEvent type for the "periodic" event.
+     * The LifecycleEvent type for the "periodic" event. 周期性事件
+     * 后台线程定时执行一些事情，比如热替换、热部署
      */
     public static final String PERIODIC_EVENT = "periodic";
 
